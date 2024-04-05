@@ -1,8 +1,11 @@
+// K번째 수
+// https://school.programmers.co.kr/learn/courses/30/lessons/42748
+
 // 접근
 // commands 배열 순회
 // commands 인수값에 따라 array 자르고, 정렬. 
 // k값에 위치한 값 리턴
-class Solution {
+class Solution42748 {
     fun solution(array: IntArray, commands: Array<IntArray>): IntArray {
         return commands.map { command ->
             array.copyOfRange(command[0] - 1, command[1]).sorted()[command[2] - 1]
@@ -18,6 +21,6 @@ fun main() {
         intArrayOf(4, 4, 1),
         intArrayOf(1, 7, 3)
     )
-    val solution = Solution()
+    val solution = Solution42748()
     println(solution.solution(array, commands).toList())
 }

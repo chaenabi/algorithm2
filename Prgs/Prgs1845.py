@@ -1,3 +1,6 @@
+# 폰켓몬
+# https://school.programmers.co.kr/learn/courses/30/lessons/1845
+
 # can take N마리 중 N/2마리 
 # 예시
 # [3, 1, 2, 3] 일 때 1번:1마리, 2번:1마리, 3번:2마리 존재.

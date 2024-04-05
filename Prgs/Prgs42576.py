@@ -1,3 +1,6 @@
+# 완주하지 못한 선수
+# https://school.programmers.co.kr/learn/courses/30/lessons/42576
+
 # 주의점: 동명이인
 # 첫번째 접근법: 해시맵 사용: {key:value} -> {participant.name: participant.size}
 # completion에서 완주한 선수를 발견할 때마다 value--
