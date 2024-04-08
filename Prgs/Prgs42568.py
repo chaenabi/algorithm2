@@ -69,15 +69,33 @@ print(solution2([["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_mak
 
 def solution3(clothes):
     map = {}
-    for [name, kind] in clothes:
-        if kind in map:
-            map[name] += 1
+    for cloth in clothes:
+        if cloth[1] in map:
+            map[cloth[1]] += 1
         else:
-            map[name] = 1
+            map[cloth[1]] = 1
     cnt = 1
+    print(map)
     for key in map:
         cnt *= (map[key] + 1)
     return cnt - 1
 
 print(solution3([["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]))
 print(solution3([["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_makeup", "face"]]))
+
+####### solution3의 중복을 제거하여 다시 푼 코드
+
+from collections import defaultdict
+
+def solution4(clothes):
+    map = defaultdict(int)
+    for [_, type] in clothes:
+         map[type] += 1
+    cnt = 1
+    print(map)
+    for key in map:
+        cnt *= (map[key] + 1)
+    return cnt - 1
+
+print(solution4([["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]))
+print(solution4([["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_makeup", "face"]]))

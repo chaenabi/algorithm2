@@ -7,9 +7,9 @@
 # value가 1이상인 선수를 해시맵에서 검색 후 리턴 
 def solution(participant, completion):
      map = { key: participant.count(key) for key in participant}
+     assert map[r] >= 0
      for r in completion:
         map[r] -= 1
-     print(map)
      for nc in map:
          if map[nc] != 0:
              answer = nc
