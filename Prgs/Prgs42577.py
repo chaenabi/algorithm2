@@ -40,3 +40,15 @@ def solution3(phone_book):
 print(solution3(["119", "97674223", "1195524421"])) # expect false
 print(solution3(["123","456","789"])) # expect true
 print(solution3(["12","123","1235","567","88"])) # expect false
+
+def solution4(phone_book):
+  hset = set(phone_book)
+  for _, elem in enumerate(phone_book):
+     for jdx, _ in enumerate(elem):
+        if elem[0:jdx] in hset:
+           return False
+  return True
+
+print(solution4(["119", "97674223", "1195524421"])) # expect false
+print(solution4(["123","456","789"])) # expect true
+print(solution4(["12","123","1235","567","88"])) # expect false
