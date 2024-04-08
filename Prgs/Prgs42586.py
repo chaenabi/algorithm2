@@ -35,20 +35,22 @@
 # 카운트를 초기화.
 
 def solution(progresses, speeds):
-  takenTime = [0] * len(progresses)
+  taken_time = [0] * len(progresses)
   answer = []
-  i = 0
-  for e in speeds:
+  for i, e in enumerate(speeds):
     cnt = 0
+    # 100에 도달하기 위한 횟수를 계산하는 공식이 있었던 것 같은데 잘 기억이 안남. 
+    # 대충 (100 - progresses[i]) // speeds[i] 인 것 같은데 안되네....
     while progresses[i] < 100:
       progresses[i] += e
       cnt += 1
-    takenTime[i] = cnt
-    i += 1
+    taken_time[i] = cnt
 
   cnt = 1
-  for i in range(1, len(takenTime)):
-    if takenTime[i - 1] >= takenTime[i]:
+  
+
+  for time in taken_time:
+    if taken_time[-1] >= taken_time[i]:
       cnt += 1
     else: 
       answer.append(cnt)
@@ -60,3 +62,14 @@ def solution(progresses, speeds):
 
 print(solution([93, 30, 55], [1, 30, 5])) # [2, 1]
 print(solution([95, 90, 99, 99, 80, 99], [1, 1, 1, 1, 1, 1])) # [1, 3, 2]
+print(solution([95, 95, 95, 95], [4, 3, 2, 1])) #  [2, 1, 1]
+print(solution([98, 99, 97, 98], [1, 1, 1, 1])) # [2, 2]
+print(solution([1, 95, 95, 95], [99, 1, 1, 1])) # [1, 3]
+print(solution([90, 90], [10, 9])) # [1, 1]
+
+# 반례에서 실패.
+print(solution([90, 98, 97, 96, 98], [1, 1, 1, 1, 1])) # asis: [2,1,2] tobe: [5] 
+# takentime: [10, 2, 3, 4, 2]
+
+# 두번째 접근 방식으로도 풀릴 거 같긴한데, 현재는 성공 케이스보다 실패 케이스가 많고 당장 떠오르는 해결책이 없음.
+
