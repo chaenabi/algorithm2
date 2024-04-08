@@ -51,13 +51,13 @@ def solution(n, lost, reserve):
             a[e] = 1
 
     for i in range(1, len(a)):
-        if a[i] == 2:
-            if i > 1 and a[i - 1] == 0:
-                a[i - 1] = 1
-                a[i] = 1
-            elif i < len(a) - 1 and a[i] == 2 and a[i + 1] == 0:
-                a[i + 1] = 1
-                a[i] = 1
+        if a[i] == 0:
+            if a[i - 1] == 2:
+                a[i] += 1
+                a[i - 1] -= 1
+            if i < len(a) - 1 and a[i + 1] == 2:
+                a[i] += 1
+                a[i + 1] -= 1
 
     return a.count(1) + a.count(2) - 1  # 0번째 인덱스 제외를 위한 -1
   

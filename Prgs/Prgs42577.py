@@ -8,7 +8,6 @@
 # 효율성을 테스트하는 부분이 있는데... startswith를 써도 될지 잘 모르겠음. startswith -> O(NM) 걸릴듯.
 def solution(phone_book):
     phone_book.sort()
-    print(phone_book)
     for i in range(len(phone_book) - 1):
       if phone_book[i + 1].startswith(phone_book[i]):
         return False
@@ -17,3 +16,15 @@ def solution(phone_book):
 print(solution(["119", "97674223", "1195524421"]))
 print(solution(["123","456","789"]))
 print(solution(["12","123","1235","567","88"]))
+
+def solution2(phone_book):
+  map = dict(zip(phone_book, range(len(phone_book))))
+  for i in range(len(phone_book)):
+     for j in range(len(phone_book[i])):
+        if map.get(phone_book[i][0:j]) != None:
+           return False
+  return True
+
+print(solution2(["119", "97674223", "1195524421"])) # expect false
+print(solution2(["123","456","789"])) # expect true
+print(solution2(["12","123","1235","567","88"])) # expect false

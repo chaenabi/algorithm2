@@ -60,7 +60,6 @@ def solution2(clothes):
         else:
             map[cloth[1]] = 1
     cnt = 1
-    print(map)
     for key in map:
         cnt *= (map[key] + 1)
     return cnt - 1
@@ -68,3 +67,17 @@ def solution2(clothes):
 print(solution2([["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]))
 print(solution2([["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_makeup", "face"]]))
 
+def solution3(clothes):
+    map = {}
+    for [name, kind] in clothes:
+        if kind in map:
+            map[name] += 1
+        else:
+            map[name] = 1
+    cnt = 1
+    for key in map:
+        cnt *= (map[key] + 1)
+    return cnt - 1
+
+print(solution3([["yellow_hat", "headgear"], ["blue_sunglasses", "eyewear"], ["green_turban", "headgear"]]))
+print(solution3([["crow_mask", "face"], ["blue_sunglasses", "face"], ["smoky_makeup", "face"]]))
