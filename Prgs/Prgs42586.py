@@ -47,12 +47,14 @@ def solution(progresses, speeds):
     taken_time[i] = cnt
 
   cnt = 1
-  
+  pointer = 0
 
-  for time in taken_time:
-    if taken_time[-1] >= taken_time[i]:
+  for i in range(1, len(taken_time)):
+    
+    if taken_time[pointer] >= taken_time[i]:
       cnt += 1
     else: 
+      pointer = i
       answer.append(cnt)
       cnt = 1
   
@@ -69,7 +71,7 @@ print(solution([90, 90], [10, 9])) # [1, 1]
 
 # 반례에서 실패.
 print(solution([90, 98, 97, 96, 98], [1, 1, 1, 1, 1])) # asis: [2,1,2] tobe: [5] 
-# takentime: [10, 2, 3, 4, 2]
+# taken_time: [10, 2, 3, 4, 2]
 
 # 두번째 접근 방식으로도 풀릴 거 같긴한데, 현재는 성공 케이스보다 실패 케이스가 많고 당장 떠오르는 해결책이 없음.
 
