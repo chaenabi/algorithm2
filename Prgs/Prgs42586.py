@@ -33,35 +33,67 @@
 # takenTime을 순회하며,
 # 이전 값이 뒷 값보다 크거나 같으면 계속해서 카운트, 조건에서 벗어나는 순간 이 카운트 값을 answer 목록에 기록하고 
 # 카운트를 초기화.
+import Math
+
+assert [-((100 - p) / -s) for (p, s) in zip([95, 3, 10], [1, 5, 7])] == [7, 3, 9]
+
+
+# [3,1,1,4,2] => 3
+# [1,2,3] => 1ㅇ
+[1,2,3,4,5][1:] = [2,3,4,5]
+
 
 def solution(progresses, speeds):
-  taken_time = [0] * len(progresses)
   answer = []
-  for i, e in enumerate(speeds):
-    cnt = 0
-    # 100에 도달하기 위한 횟수를 계산하는 공식이 있었던 것 같은데 잘 기억이 안남. 
-    # 대충 (100 - progresses[i]) // speeds[i] 인 것 같은데 안되네....
-    while progresses[i] < 100:
-      progresses[i] += e
-      cnt += 1
-    taken_time[i] = cnt
-
-  cnt = 1
-  pointer = 0
-
-  for i in range(1, len(taken_time)):
-    
-    if taken_time[pointer] >= taken_time[i]:
-      cnt += 1
-    else: 
-      pointer = i
-      answer.append(cnt)
-      cnt = 1
+  taken_times = [-((100 - p) / -s) for (p, s) in zip(progresses, speeds)] # 
   
-  answer.append(cnt)
-  
-  return answer
+  def go(taken_times):
+    if not taken_times:
+      return []
 
+    first = taken_times[0]
+    cnt = 1
+    for i in taken_times[1:]:
+      if first < i:
+        break
+      cnt += 1
+
+    return [cnt] + go(taken_times[cnt:])
+  
+  return go(taken_times)
+
+  # # 모든 작업을 배포한다
+  
+  # while taken_times:
+  #   # 가능한 최대 숫자의 작업을 배포한다
+
+  #   # 배포간으한 작업의 숫자(cnt)를 구한다
+  #   first = taken_times[0]
+  #   cnt = 1
+  #   for i in taken_times[1:]:
+  #     if first < i:
+  #       break
+  #     cnt += 1
+      
+  #   # 실제 배포한다
+  #   answer.append(cnt) 
+  #   # 배포한 값은 제거한다
+  #   # taken_times.splice(0, cnt)
+  #   taken_times = taken_times[cnt:]
+
+  # return answer
+
+  # cnt = 1
+  # j = 0
+  # for i in range(1, len(taken_times)):
+  #   if taken_times[j] >= taken_times[i]:
+  #     cnt += 1
+  #   else: 
+  #     j = i
+  #     answer.append(cnt)
+  #     cnt = 1
+
+  # answer.append(cnt)
 print(solution([93, 30, 55], [1, 30, 5])) # [2, 1]
 print(solution([95, 90, 99, 99, 80, 99], [1, 1, 1, 1, 1, 1])) # [1, 3, 2]
 print(solution([95, 95, 95, 95], [4, 3, 2, 1])) #  [2, 1, 1]
